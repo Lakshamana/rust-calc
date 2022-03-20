@@ -52,11 +52,11 @@ fn operate(operator: char, first_number: f32, second_number: f32) -> f32 {
     // }
 
     // Recommended way, would be, however
-    return match operator {
+    match operator {
         '+' => first_number + second_number,
         '-' => first_number - second_number,
         '*' | 'x' | 'X' => first_number * second_number,
         '/' => first_number / second_number,
         _ => panic!("Invalid operator used.")
-    };
+    }
 }
