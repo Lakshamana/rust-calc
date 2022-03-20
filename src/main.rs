@@ -1,20 +1,23 @@
+use core::panic;
 use std::env::{args, Args};
 
 fn main() {
     let mut args: Args = args();
 
     // println!("Inner argv before all runs: {:?}", args);
-    let first = args.nth(1).unwrap();
+    let argv = [args.nth(1), args.nth(0), args.nth(0)];
+
+    let [first, operator, second] = argv;
+    let first = first.expect("Couldn't read first number");
     // println!("Inner argv #1: {:?}", args);
 
-    let operator = args.nth(0).unwrap().chars().next().unwrap();
+    let operator = operator.expect("Couldn't read operator").chars().next().unwrap();
     // println!("Inner argv #2: {:?}", args);
 
-    let second = args.nth(0).unwrap();
+    let second = second.expect("Couldn't read second number");
     // println!("Inner argv #3: {:?}", args);
-
-    let first_number = first.parse::<f32>().unwrap();
-    let second_number = second.parse::<f32>().unwrap();
+    let first_number = first.parse::<f32>().expect("Error parsing first number");
+    let second_number = second.parse::<f32>().expect("Error parsing second number");
 
     let result = operate(operator, first_number, second_number);
     println!("{}", output(operator, first_number, second_number, result));
@@ -46,6 +49,6 @@ fn operate(operator: char, first_number: f32, second_number: f32) -> f32 {
         '-' => first_number - second_number,
         '*' | 'x' | 'X' => first_number * second_number,
         '/' => first_number / second_number,
-        _ => panic!("Invalid operator.")
+        _ => panic!("Invalid operator used.")
     };
 }
