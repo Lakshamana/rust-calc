@@ -5,6 +5,14 @@ fn main() {
     let mut args: Args = args();
 
     // println!("Inner argv before all runs: {:?}", args);
+    //
+    // You may receive the array value in a variable like this:
+    // > let argv = [args.nth(1), args.nth(0), args.nth(0)];
+    // In this case argv.get(index).unwrap() -> will resolve to &element (reference)
+    // to get and element, you'd have to do, e.g.
+    // > let first = argv.get(0).unwrap().expect("Couldn't read first number");
+    // use array destructuring instead to get resolved Option values (dereferenced values)
+
     let [first, operator, second] = [args.nth(1), args.nth(0), args.nth(0)];
 
     let first = first.expect("Couldn't read first number");
