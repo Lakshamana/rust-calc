@@ -5,9 +5,8 @@ fn main() {
     let mut args: Args = args();
 
     // println!("Inner argv before all runs: {:?}", args);
-    let argv = [args.nth(1), args.nth(0), args.nth(0)];
+    let [first, operator, second] = [args.nth(1), args.nth(0), args.nth(0)];
 
-    let [first, operator, second] = argv;
     let first = first.expect("Couldn't read first number");
     // println!("Inner argv #1: {:?}", args);
 
@@ -16,6 +15,7 @@ fn main() {
 
     let second = second.expect("Couldn't read second number");
     // println!("Inner argv #3: {:?}", args);
+
     let first_number = first.parse::<f32>().expect("Error parsing first number");
     let second_number = second.parse::<f32>().expect("Error parsing second number");
 
